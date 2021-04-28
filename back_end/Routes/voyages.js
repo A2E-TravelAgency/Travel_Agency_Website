@@ -1,2 +1,11 @@
 import express from 'express';
-//test comment
+
+const router = express.Router();
+
+router.get('/' , (req, res ) => {
+
+    res.send('wokring ...');
+});
+
+
+export default router;
