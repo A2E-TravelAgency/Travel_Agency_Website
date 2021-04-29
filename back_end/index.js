@@ -5,15 +5,20 @@ import cors from 'cors';
 import hotelRoutes from './Routes/hotels.js';
 
 
+
+
 const app = express();
 
 //starting path :  every route in hotel routes is gonna start with hotels  => localhost:5000/hotels
 
-app.use('/hotels ' , hotelRoutes);
+app.use('/hotels' , hotelRoutes);
+app.use(express.json({limit : "30mb" , extended : true}));
+app.use(express.urlencoded({limit : "30mb" , extended : false}));
 
-express.json({limit : "30mb" , extended : true});
-express.urlencoded({limit : "30mb" , extended : false});
-app.use(cors());
+// app.get
+//express.json({limit : "30mb" , extended : true});
+//express.urlencoded({limit : "30mb" , extended : false});
+//app.use(cors());
 
 const  CONNECTION_URL = "mongodb+srv://admin:2021@cluster0.fwzji.mongodb.net/Travel_Agency?retryWrites=true&w=majority";
 
