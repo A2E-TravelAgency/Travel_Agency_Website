@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import crypto from 'crypto';
 const UserSchema = new mongoose.Schema({
     username: {
         type: String, required: [true, "Please provide a username"]
@@ -35,6 +36,16 @@ UserSchema.methods.matchPasswords =  function(password){ //method name for users
 
 UserSchema.methods.getSignedToken = function(){ //generate the web token  Il permet l'échange sécurisé de jetons entre plusieurs parties. Cette sécurité de l’échange se traduit par la vérification de l’intégrité des données à l’aide d’une signature numérique.
     return jwt.sign({ id: this._id}, process.env.JWT_SECRET, {expiresIn: process.env.JWT_EXPIRE,});
+};
+
+UserSchema.methods.getResetPasswordToken = function(){
+    const resetToken = crypto.randomBytes(20).toString("hex");
+    //hash the token and save the hashed version in resetPasswordToken
+    this.resetPasswordToken = crypto.createHash("sha256").update(resetToken).digest("hex");//sha156 is the hashing algo
+
+    this.resetPasswordExpire = Date.now() + 10 * (60 * 1000);
+
+    return resetToken;
 };
 
  const Utilisateur = mongoose.model("Utilisateur",UserSchema);

@@ -5,11 +5,18 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import authRoutes from "./Routes/authentification.js"
+import privateRoutes from "./Routes/private.js"
+
 //import volRoutes from "./Routes/vol.js"
 const app = express();
 app.use(express.json());
+app.get("/", (req, res, next) => {
+    res.send("Api running");
+  });
 //app.use('/vol' , volRoutes);
 app.use('/api/authentification' , authRoutes);
+app.use('/private' , privateRoutes);
+
 
 
 //express.json({limit : "30mb" , extended : true});
