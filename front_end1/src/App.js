@@ -5,6 +5,7 @@ import LoginScreen from "./Components/Screens/LoginScreen.js";
 import RegisterScreen from "./Components/Screens/RegisterScreen.js";
 import ForgotPasswordScreen from "./Components/Screens/ForgotPasswordScreen.js";
 import PasswordResetScreen from "./Components/Screens/PasswordResetScreen.js";
+import VolsScreen from "./Components/Screens/VolsScreen.js";
 
 
 
@@ -18,6 +19,7 @@ const  App =  () => {
           <Route exact path="/register" component={RegisterScreen}/>
           <Route exact path="/forgotpassword" component={ForgotPasswordScreen}/>
           <Route exact path="/passwordreset/:resetToken" component={PasswordResetScreen}/>
+          <Route exact path="/flights" component={VolsScreen}/>
         </Switch>
       </div>
     </Router>

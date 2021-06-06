@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./LoginScreen.css";
-
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 
 const LoginScreen = ({ history }) => {
@@ -44,6 +45,9 @@ const LoginScreen = ({ history }) => {
   };
 
   return (
+<div>
+ <Navbar/> 
+  <main>
     <div className="login-screen">
       <div className="login-screen__pic">
         <div className="wrap">
@@ -92,6 +96,9 @@ const LoginScreen = ({ history }) => {
         </div>
       </div>
     </div>
+    <Footer/> 
+  </main>
+</div>
   );
 };
 

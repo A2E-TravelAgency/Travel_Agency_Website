@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
+import Navbar from "./Navbar";
 import "./LoginScreen.css";
 
 const PasswordResetScreen = ({ history, match }) => {
@@ -48,48 +48,53 @@ const PasswordResetScreen = ({ history, match }) => {
   };
 
   return (
-    <div className="login-screen">
-    <div className="login-screen__pic">
-    <div className="forgotpass-wrap">
-      <form
-        onSubmit={resetPasswordHandler}
-        className="login-screen__form"
-      >
-        <h3 className="login-screen__title">Forgot Password</h3>
-        {error && <span className="error-message">{error} </span>}
-        {success && (
-          <span className="success-message">
-            {success} <Link to="/login">Login</Link>
-          </span>
-        )}
-        <div className="form-group">
-          <input
-            type="password"
-            required
-            id="password"
-            placeholder="Enter new password"
-            autoComplete="true"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+    <div>
+      <Navbar/>
+        <main>
+        <div className="login-screen">
+        <div className="login-screen__pic">
+        <div className="forgotpass-wrap">
+          <form
+            onSubmit={resetPasswordHandler}
+            className="login-screen__form"
+          >
+            <h3 className="login-screen__title">Forgot Password</h3>
+            {error && <span className="error-message">{error} </span>}
+            {success && (
+              <span className="success-message">
+                {success} <Link to="/login">Login</Link>
+              </span>
+            )}
+            <div className="form-group">
+              <input
+                type="password"
+                required
+                id="password"
+                placeholder="Enter new password"
+                autoComplete="true"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <input
+                type="password"
+                required
+                id="confirmpassword"
+                placeholder="Confirm new password"
+                autoComplete="true"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+            </div>
+            <button type="submit" className="form-buttn">
+              Reset Password
+            </button>
+          </form>
+          </div>
+          </div>
         </div>
-        <div className="form-group">
-          <input
-            type="password"
-            required
-            id="confirmpassword"
-            placeholder="Confirm new password"
-            autoComplete="true"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-        </div>
-        <button type="submit" className="form-buttn">
-          Reset Password
-        </button>
-      </form>
-      </div>
-      </div>
+      </main>
     </div>
   );
 };

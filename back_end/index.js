@@ -6,8 +6,9 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import authRoutes from "./Routes/authentification.js"
 import privateRoutes from "./Routes/private.js"
+import flightsRoutes from "./Routes/vols.js"
 
-//import volRoutes from "./Routes/vol.js"
+//import volRoutes from "./Routes/vols.js"
 const app = express();
 app.use(express.json());
 app.get("/", (req, res, next) => {
@@ -16,6 +17,7 @@ app.get("/", (req, res, next) => {
 //app.use('/vol' , volRoutes);
 app.use('/api/authentification' , authRoutes);
 app.use('/private' , privateRoutes);
+app.use('/flights' , flightsRoutes);
 
 
 
