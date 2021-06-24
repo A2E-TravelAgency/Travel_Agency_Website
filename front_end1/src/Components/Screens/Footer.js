@@ -22,12 +22,19 @@ function Footer () {
                  </div>
                  <div class="footer-col">
                      <h4>payment options</h4>
-                     <ul>
-                         <li><a href="#"><i class="fa fa-cc-paypal fa-2x"></i></a></li>
-                         <li><a href="#"><i class="fa fa-cc-visa fa-2x"></i></a></li>
-                         <li><a href="#"><i class="fa fa-cc-mastercard fa-2x"></i></a></li>
-                         
+                     <ul class="display">
+                         <li><a href="#"><i class="fab fa-cc-paypal fa-2x"></i></a></li>
+                         <li><a href="#"><i class="fab fa-cc-visa fa-2x"></i></a></li>
+                         <li><a href="#"><i class="fab fa-cc-mastercard fa-2x"></i></a></li>
+                 
                      </ul>
+                     <ul class="display">
+                         <li><a href="#"><i class="fab fa-cc-apple-pay fa-2x"></i></a></li>
+                         <li><a href="#"><i class="fab fa-cc-amazon-pay fa-2x"></i></a></li>
+                         <li><a href="#"><i class="fab fa-cc-stripe fa-2x"></i></a></li>
+                 
+                     </ul>
+                     
                  </div>
                  <div class="footer-col">
                      <h4>follow us</h4>

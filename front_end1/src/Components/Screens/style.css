@@ -160,10 +160,16 @@ main {
 
 /* Small screens */
 @media only screen and (max-width: 600px) {
+  .vol-screen__quote {
+    top:0;
+    padding-top: 145px;
+  }
   .navbar {
-    top: 0;
+    top: 1;
     width: 100vw;
     height: 5rem;
+    position: fixed;
+    z-index: 100;
   }
 
   .logo {
@@ -180,6 +186,7 @@ main {
 
   main {
     margin: 0;
+    padding-top: 80px;
   }
 }
 
@@ -189,6 +196,8 @@ main {
     top: 0;
     width: 5rem;
     height: 100vh;
+    position: fixed;
+    z-index: 100;
   }
 
   .navbar:hover {

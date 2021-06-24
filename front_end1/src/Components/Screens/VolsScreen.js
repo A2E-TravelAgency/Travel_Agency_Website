@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import TextField from '@material-ui/core/TextField';
@@ -17,12 +17,41 @@ import Autocomplete , { createFilterOptions } from '@material-ui/lab/Autocomplet
 import React from 'react';
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import {DataGrid} from '@material-ui/data-grid'
+
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import TablePagination from '@material-ui/core/TablePagination';
 
 
 
 import "./style.css";
 import "./VolsScreen.css";
 import "./LoginScreen.css";
+
+const StyledTableCell = withStyles((theme) => ({
+  head: {
+    backgroundColor: '#6649b8',
+    color: theme.palette.common.white,
+    
+  },
+  body: {
+    fontSize: 14,
+  },
+}))(TableCell);
+
+const StyledTableRow = withStyles((theme) => ({
+  root: {
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.action.hover,
+    },
+  },
+}))(TableRow);
 
 
 const theme = createMuiTheme({
@@ -70,6 +99,27 @@ const PurpleSwitch = withStyles({
   track: {},
 })(Switch);
 const useStyles = makeStyles(()=>({
+
+  root: {
+    width: '100%',
+  },
+  container: {
+    maxHeight: 500,
+    '&::-webkit-scrollbar': {
+      width: '0.4em'
+    },
+    '&::-webkit-scrollbar-track': {
+      boxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',
+      webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)'
+    },
+    '&::-webkit-scrollbar-thumb': {
+      backgroundColor: '#6649b8',
+    }
+  },
+
+  table: {
+    minWidth: 700,
+  },
     grid: {
       width:'100%',
       margin:'0px'
@@ -92,7 +142,12 @@ const useStyles = makeStyles(()=>({
 }));
 
 const VolsScreen = ({ history, match }) => {
-  const [inputValue1, setinputValue] = useState("");
+  const [dataf, setDataf] = useState(null);
+  const columns = [
+    {field: 'origin', headerName: 'Origin'},
+    {field: 'destination', headerName: 'Destination'},
+  ]
+  const [inputValue1, setinputValue] = useState(null);
   const [destination, setDestination] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -168,6 +223,20 @@ const VolsScreen = ({ history, match }) => {
           ].join(','),
           },});
 
+
+const [page, setPage] = useState(0);
+const [rowsPerPage, setRowsPerPage] = useState(10);
+        
+const handleChangePage = (event, newPage) => {
+  setPage(newPage);
+};
+        
+const handleChangeRowsPerPage = (event) => {
+  setRowsPerPage(+event.target.value);
+  setPage(0);
+};
+
+
   const handleChange = (event) => {
     setAge(event.target.value);
   };
@@ -176,11 +245,20 @@ const VolsScreen = ({ history, match }) => {
     setSelectedDate(date);
   };
 
-
-
-  const resetPasswordHandler = async (e) => {
+  const handleInputChange = (event,value) => {
+    setinputValue(value);
+  };
+const testHandler=(event)=>{
+  const inputV= inputValue1.IATA ;
+  console.log(inputV);
+  console.log(inputV);
+  console.log(inputV);
+  console.log(inputV);
+}
+  const flightsHandler = async (e) => {
     e.preventDefault();
 
+    //const inputV= inputValue1.IATA ;
     const config = {
       header: {
         "Content-Type": "application/json",
@@ -189,26 +267,50 @@ const VolsScreen = ({ history, match }) => {
 
 
     try {
-      const { data } = await axios.put(
-        `/flights`,
+      const { data } = await axios.post(
+        "/travel/flights",
         {
-          inputValue1,
-
+          "inputValue1" :"RAK",
         },
         config
-      );
-
+      ).then(res => {
+        // fetch success
+        const allTickets = res.data;
+        setDataf(allTickets);
+       
+        console.log(res.data);
+     });
+      history.push("/");
+      
       console.log(data);
-      setSuccess(data.data);
+      console.log(data);
+      console.log(data.data);
     } catch (error) {
-      setError(error.response.data.error);
       setTimeout(() => {
         setError("");
       }, 5000);
     }
+    /*try{const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title: 'React POST Request Example' })
+  };
+      await fetch("/travel/flights",requestOptions).then(res => {
+        // fetch success
+        return res.json
+     }).then(jsonResponse => console.log(jsonResponse))
+    }catch (error) {
+      setError(error.response.data.error);
+      setTimeout(() => {
+        setError("");
+      }, 5000);
+    }*/
+    //let allStatements = <div>Some Results</div>
+
   };
 
-  const airports = [{"name": "Goroka ", "city": "Goroka", "country": "Papua New Guinea", "IATA": "GKA", "ICAO": "AYGA", "lat": "-6.081689834590001", "lon": "145.391998291", "timezone": "10"}];
+    
+  const airports = [{"name": "Goroka ","name": "Goroka ", "city": "Goroka", "country": "Papua New Guinea", "IATA": "GKA", "ICAO": "AYGA", "lat": "-6.081689834590001", "lon": "145.391998291", "timezone": "10", "id" : 1}, {"name": "Madang ", "city": "Madang", "country": "Papua New Guinea", "IATA": "MAG", "ICAO": "AYMD", "lat": "-5.20707988739", "lon": "145.789001465", "timezone": "10", "id" : 2}];
   /*const search = document.getElementById('search');
   const matchList = document.getElementById('match-list');
 
@@ -252,15 +354,15 @@ const filterOptions = createFilterOptions({
 <div>
  <Navbar/> 
   <main>
+  <ThemeProvider theme={darkmode ? darktheme : lighttheme}>
+
   <div className="vol-screen">
   <div className={isActive ? 'vol-screen__picd': "vol-screen__pic"} >
   <p className="vol-screen__quote"> “When once you have tasted flight, you will forever walk the earth with your eyes turned skyward, for there you have been, and there you will always long to return.”
 <div>– Leonardo DaVinci</div></p>
 
       <div class="inputBox">
-    <ThemeProvider theme={darkmode ? darktheme : lighttheme}>
       <form
-        onSubmit={resetPasswordHandler}
         className="vol-screen__form"
       >
         <h3 className="vol-screen__title">Enter Flight Informations</h3>
@@ -275,18 +377,21 @@ const filterOptions = createFilterOptions({
     <Autocomplete
       id="combo-box-demo"
       options={airports}
-      inputValue={inputValue1}
-      onInputChange={(e) => setinputValue(e.target.value)}
+      //inputValue={inputValue1}
+      value={inputValue1}
+      onChange={handleInputChange}
+      //inputValue={inputValue1}
+      //onInputChange={(e) => setinputValue(e.target.value)}
+     // onChange={(event, value) => console.log(value)}
+      //onChange={(event, newValue) => setinputValue(newValue)}
       filterOptions={filterOptions}  
-      getOptionLabel={({ country, city }) => {
-        // this is how our option will be displayed when selected
-        // remove the `id` here
-        return `${country} ${city}`;
-      }}
+      getOptionLabel={( airports ) => airports.IATA}
+      getOptionSelected={(option, value) => option.value === value.value}
+      //getOptionLabel={({ IATA }) => { this is how our option will be displayed when selected remove the `id` here return `${IATA}`;}}
       style={{ width: (400) }}
       className={classes.tr}
-      renderInput={(params) => <TextField {...params} label="Departure" variant="outlined" />}
-      open={inputValue1.length > 2}
+      renderInput={(params) => <TextField {...params} label="Departure"   variant="outlined" />}
+     // open={inputValue1.length > 2}
       renderOption={(option) => (
         <>
           <p>{option.country} - {option.city} - {option.name} - {option.IATA} <small> 
@@ -388,7 +493,7 @@ const filterOptions = createFilterOptions({
         </div>
         <Grid item>
         
-        <Button  style={{textTransform: 'capitalize'}} type="submit" className="form-button">
+        <Button  style={{textTransform: 'capitalize'}} type="submit" className="form-button" onClick={flightsHandler}>
             Search
           </Button>
         </Grid>
@@ -397,11 +502,65 @@ const filterOptions = createFilterOptions({
 <PurpleSwitch    onClick={() => {toggleClass(); setDarkmode(!darkmode);}}
      
 checked ={darkmode} />
-      </ThemeProvider>
       </div>
 
     </div>
     </div>
+    <div className="datatable">
+    <Paper className={classes.root}>
+    <TableContainer component={Paper} className={classes.container}>
+    <Table className={classes.table} stickyHeader aria-label="sticky table">
+        <TableHead>
+          <TableRow>
+            <StyledTableCell>Company</StyledTableCell>
+            <StyledTableCell align="right">Plane</StyledTableCell>
+            <StyledTableCell align="right">Departure airport</StyledTableCell>
+            <StyledTableCell align="right">Destination aiport</StyledTableCell>
+            <StyledTableCell align="right">Departure</StyledTableCell>
+            <StyledTableCell align="right">Arrival</StyledTableCell>
+            <StyledTableCell align="right">Price&nbsp;(DH)</StyledTableCell>
+            <StyledTableCell align="right">Link</StyledTableCell>
+          </TableRow>
+        </TableHead>
+    {dataf &&
+          dataf.tickets.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((flight, index) => {
+
+            return (
+
+        <TableBody>
+
+            <StyledTableRow hover role="checkbox" tabIndex={-1}>
+              <StyledTableCell component="th" scope="row">
+                
+              </StyledTableCell>
+              <StyledTableCell align="right"></StyledTableCell>
+              <StyledTableCell align="right">{flight.origin}</StyledTableCell>
+              <StyledTableCell align="right">{flight.destination}</StyledTableCell>
+              <StyledTableCell align="right">{flight.deptime}</StyledTableCell>
+              <StyledTableCell align="right">{flight.arrtime}</StyledTableCell>
+              <StyledTableCell align="right"></StyledTableCell>
+              <StyledTableCell align="right"></StyledTableCell>
+            </StyledTableRow>
+ 
+        </TableBody>
+            );
+          })}
+          </Table>
+
+    </TableContainer>
+    <TablePagination
+        rowsPerPageOptions={[10, 25, 100]}
+        component="div"
+        //count={dataf.tickets.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onChangePage={handleChangePage}
+        onChangeRowsPerPage={handleChangeRowsPerPage}
+      />
+    </Paper>
+    </div>
+    </ThemeProvider>
+
     <Footer/> 
 
 </main>

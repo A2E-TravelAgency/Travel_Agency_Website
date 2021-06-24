@@ -134,3 +134,11 @@
        transform: translate(-50%, -50%);
 
    }
+   .datatable{
+    overflow-x: auto;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 50px;
+    padding: 10px;
+    margin: 20px;
+   }

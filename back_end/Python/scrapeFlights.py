@@ -13,17 +13,18 @@ import json
 from datetime import date, timedelta, datetime
 import time
     
-origin = "RAK"
+origin = sys.argv[1]#"RAK"
 destination = "TUN"
 startdate = "2021-09-06"
-enddate = "2021-09-09"
+#enddate = "2021-09-09"
 
 url = "https://web.atlasvoyages.com/reservation-vols#/?flight=" + origin + "," + destination + "," + startdate + "&travellers=1&cabin=M"
-url1 = "https://www.kayak.com/flights/" + origin + "-" + destination + "/" + startdate + "/" + enddate + "?sort=bestflight_a&fs=stops=0"
+#url1 = "https://www.kayak.com/flights/" + origin + "-" + destination + "/" + startdate + "/" + enddate + "?sort=bestflight_a&fs=stops=0"
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
-driver = webdriver.Chrome("C:/Users/S/Desktop/travel_agency/Python/chromedriver.exe", options=chrome_options)
+driver = webdriver.Chrome("C:/Users/S/Desktop/travel_agency/back_end/Python/chromedriver.exe", options=chrome_options)
+driver.set_window_size(10, 10) 
 driver.implicitly_wait(20)
 driver.get(url)
 
@@ -64,17 +65,16 @@ for div in price_list:
 df = pd.DataFrame({"origin" : origin,
                        "destination" : destination,
                        "startdate" : startdate,
-                       "enddate" : enddate,
                        "currency": "USD",
                        "deptime":deptime,
                        "arrtime": arrtime,
                        
                        })
-
+df['id'] = df.origin.map(hash)
 print(df)
 
-resp = df.to_json(orient = "records")
-
+resp = json.loads(df.to_json(orient = "records"))
+resp = {'tickets': resp}
 
 print(json.dumps(resp))
 sleep(10)

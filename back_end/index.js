@@ -10,6 +10,7 @@ import flightsRoutes from "./Routes/vols.js"
 
 //import volRoutes from "./Routes/vols.js"
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.get("/", (req, res, next) => {
     res.send("Api running");
@@ -17,7 +18,7 @@ app.get("/", (req, res, next) => {
 //app.use('/vol' , volRoutes);
 app.use('/api/authentification' , authRoutes);
 app.use('/private' , privateRoutes);
-app.use('/flights' , flightsRoutes);
+app.use('/travel' , flightsRoutes);
 
 
 

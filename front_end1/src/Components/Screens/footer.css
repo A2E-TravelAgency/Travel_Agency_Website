@@ -178,5 +178,9 @@ ul{
   .wrapper .button:nth-child(2) span{
     color: white;
   }
-  
+  .display{
+    display: inline-block;
+    margin:0 13px 0px 13px;
+    margin-left: 0px;
+  }
 

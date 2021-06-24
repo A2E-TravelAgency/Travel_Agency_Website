@@ -1,10 +1,8 @@
 import express from 'express';
+import {search} from "../Controllers/vols.js"
 const router = express.Router();
 //middleware niveau routeur
-router.get('/flights' , function(req, res ) {
-
-    res.send('working ...');
-})
+router.route("/flights").post(search);
 
 
 export default router;
