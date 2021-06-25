@@ -1,14 +1,29 @@
-import React,{useState} from 'react';
+import React,{useState , useEffect} from 'react';
 import Axios from 'axios';
 
 import './App.css';
 
 const  App =  () => {
 
-  const addToVoyages=()=>{
 
+  useEffect(()=>{
+    Axios.get('http://localhost:5000/read' ).then((response)=>{
+      setVoyageList(response.data);
+        })
+  },[])
+
+
+  const addToVoyages=()=>{
+    Axios.post("http://localhost:5000/insert" , {villeDep:villeDep ,
+    villeArr:villeArr,dateDep:dateDep,dateArr:dateArr,nbPlace:nbPlace,
+    price:price})
   }
 
+  const deleteVoyage=(id)=>{
+    Axios.delete(`http://localhost:5000/delete/${id}`  )
+  }
+
+  const [voyageList,setVoyageList] = useState([]);
 
   const [villeDep,setVilleDep] = useState('');
   const [villeArr,setVilleArr] = useState('');
@@ -62,7 +77,29 @@ const  App =  () => {
         <button onClick={addToVoyages} > ADD</button>
      
       
-      
+      <h1> Liste des voyages</h1>
+      {voyageList.map((val,key)=>{
+        return <div class="voyage" key={key}>
+           <h2>Depart: {val.voyageDepart}</h2>
+           <h2>Arrive: {val.voyageArrive}</h2>
+           <h2>Date de depart: {val.voyageDateDepart}</h2>
+           <h2>Date d'Arrive: {val.voyageDateArrive}</h2>
+           <h2>Prix: {val.voyagePrix} DH</h2>
+           <h2>Nombre de places: {val.voyagePlaces}</h2>
+           
+           <button onClick={()=>deleteVoyage(val._id)}  > Delete</button>
+
+
+         </div>
+
+
+
+
+
+
+
+        
+      })}
 
 
 
