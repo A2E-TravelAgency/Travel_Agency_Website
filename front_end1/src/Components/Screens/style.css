@@ -86,7 +86,7 @@ main {
   min-width: 2rem;
   margin: 0 1.5rem;
 }
-.fa-map-marked-alt,.fa-hotel,.fa-plane-departure,.fa-sign-in-alt{
+.fa-map-marked-alt,.fa-hotel,.fa-plane-departure,.fa-sign-in-alt,.fa-comments-alt,.fa-users,.fa-address-card,.fa-sign-out-alt{
   --fa-primary-color: #9387b4;
     --fa-secondary-color: #6d53b4;
     font-size: 30px;
@@ -109,7 +109,7 @@ main {
 .fa-secondary {
   color: #df49a6;
 }
-.fa-map-marked-alt,.fa-hotel,.fa-plane-departure,.fa-sign-in-alt,.fa-compass,
+.fa-map-marked-alt,.fa-hotel,.fa-plane-departure,.fa-sign-in-alt,.fa-compass,.fa-comments-alt,.fa-users,.fa-address-card,.fa-sign-out-alt,
 .fa-primary,
 .fa-secondary {
   transition: var(--transition-speed);

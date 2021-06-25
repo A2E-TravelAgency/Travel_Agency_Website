@@ -14,7 +14,7 @@ const RegisterScreen = ({ history }) => {
 
   useEffect(() => {
     if (localStorage.getItem("authToken")) {
-      history.push("/");
+      history.push("/user/profile");
     }
   }, [history]);
   
@@ -49,7 +49,7 @@ const RegisterScreen = ({ history }) => {
 
       localStorage.setItem("authToken", data.token);
 
-      history.push("/");
+      history.push("/user/profile");
     } catch (error) {
       setError(error.response.data.error);
       setTimeout(() => {

@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Raleway;
+  }
+  .profile {
+   
+      width: 100%;
+      height: inherit;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #CBC3E3;
+    }
+    table,td{
+      
+      font-weight: bold;
+      
+      padding: 31.4px;
+    }
+    .font{
+      font-size: 20px;
+      color: #6649b8;
+    }
+    .td{
+      border-bottom: 2px solid #6649b8;
+    }
+    .tdy{
+      border-left: 2px solid #6649b8;
+
+    }
+    .table{
+      color: rgb(31, 30, 30);
+      border-right: 2px solid #6649b8;
+    }
+    .tabled{
+      color: white;
+      border-right: 2px solid #6649b8;
+    }
+    .profile__form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 100px;
+        width: inherit;
+        padding: 3rem;
+        
+       /* box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);*/
+        background: transparent;
+      }
+      .profileinputBox{
+        display: flex;
+        flex-wrap: wrap;
+        background-color: transparent;
+        margin: 10em;
+        box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+        background: transparent;
+        backdrop-filter: blur(29px);
+    }
+    .profile__pic {
+    
+        
+        background-image: url("img/hello19.jpg");
+        background-size: cover;
+      
+        display: flex;
+    
+      }
+      .profile__quote {
+        color: rgb(175, 166, 166);
+        font-family: Raleway;
+         text-align: center;
+         font-weight: bold;
+         font-size: 40px;
+         position: absolute;
+         top: 15%;
+         left: 52%;
+           transform: translate(-50%, -50%);
+    
+       }
+.adj{
+  padding-right: 5.9rem;
+}
+       @media only screen and (max-width: 600px) {
+        .profile__form {
+          width: 100%;
+        }
+        .adj{
+          padding-right: 3rem;
+        }
+        .table{
+          border-right: 0;
+          border-bottom: 1px solid black;
+        }
+      }

@@ -10,10 +10,17 @@ const LoginScreen = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [role, setRole] = useState(null);
 
   useEffect(() => {
     if (localStorage.getItem("authToken")) {
-      history.push("/");
+      
+      if(localStorage.role == "user"){
+        history.push("/user/profile");
+      }else if(localStorage.role == "admin"){
+        history.push("/admin/profile");
+      }
+
     }
   }, [history]);
 
@@ -33,11 +40,18 @@ const LoginScreen = ({ history }) => {
         config
       );
 
-      localStorage.setItem("authToken", data.token);
+     localStorage.setItem("authToken", data.token);
+     localStorage.setItem("role", data.role);
+      console.log(localStorage);
+     if(localStorage.role == "user"){
+      history.push("/user/profile");
+    }else if(localStorage.role == "admin"){
+      history.push("/admin/profile");
+    }
 
-      history.push("/");
+      
     } catch (error) {
-      setError(error.response.data.error);
+      //setError(error.response.data.error);
       setTimeout(() => {
         setError("");
       }, 5000);
