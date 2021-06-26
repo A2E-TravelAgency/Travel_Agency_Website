@@ -57,3 +57,16 @@ export async function changeEmailUsername (req, res, next) {
      }
     
 };
+
+export async function getUsers (req, res, next) {
+
+     try {
+         const users = await Utilisateur.find({}).select("+password");;
+      
+            res.send({"users" : users});
+     } catch (error) {
+        next(error);
+         return res.status(500).json({msg: error.message});
+     }
+    
+};

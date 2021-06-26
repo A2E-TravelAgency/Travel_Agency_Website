@@ -51,6 +51,15 @@
        /* box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);*/
         background: transparent;
       }
+      .user__form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+          width: inherit;
+          
+         /* box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);*/
+          background: transparent;
+        }
       .profileinputBox{
         display: flex;
         flex-wrap: wrap;
@@ -60,6 +69,16 @@
         background: transparent;
         backdrop-filter: blur(29px);
     }
+    .usersinputBox{
+      display: flex;
+      flex-wrap: wrap;
+      background-color: transparent;
+      margin-top: 10em;
+      margin-bottom: 10em;
+      box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+      background: transparent;
+      backdrop-filter: blur(29px);
+  }
     .profile__pic {
     
         
@@ -93,6 +112,15 @@
         }
         .table{
           border-right: 0;
-          border-bottom: 1px solid black;
+          border-bottom: 2px solid #6649b8;
         }
       }
+      .userstable{
+        max-width: 1242px;
+        overflow-x: auto;
+        margin-right: auto;
+        margin-left: auto;
+        margin-top: 50px;
+        padding: 10px;
+        margin: 20px;
+       }
