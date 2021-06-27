@@ -38,6 +38,7 @@ mongoose.connect( CONNECTION_URL , { useNewUrlParser : true , useUnifiedTopology
     .then( () => app.listen(PORT , () => console.log(`server running on port : ${PORT}`)))
     .catch( (error) => console.log(error.message ));
 
+    
     mongoose.set('useFindAndModify' , false);
 
 
@@ -51,6 +52,7 @@ mongoose.connect( CONNECTION_URL , { useNewUrlParser : true , useUnifiedTopology
       const nbPlace = req.body.nbPlace;
       const price = req.body.price;
 
+      
         const voyage = new VoyageModel({ voyageDepart :villeDep, 
          voyageArrive:villeArr, voyageDateDepart:dateDep,voyageDateArrive:dateArr,
           voyagePrix:price,voyagePlaces:nbPlace});
@@ -62,7 +64,69 @@ mongoose.connect( CONNECTION_URL , { useNewUrlParser : true , useUnifiedTopology
     });
 
 
+
+
+    app.put("/buy",async (req,res)=>{
+
+
+      // const name = req.body.name;
+      // const tel = req.body.tel;
+      const id =req.body.id;
+      var voyageurs= { name: req.body.name, tel: req.body.tel };
+      
+          try{
+            VoyageModel.findById(id,(bought)=>{
+              bought.voyageurs.push(voyageurs);
+              bought.voyagePlaces=bought.voyagePlaces-1;
+              bought.save();
+            });
+          }catch(err){
+              console.log(err);
+          }//ss
+    });
+
+    // reservation insert after checkout
+    // app.post("/insertreservation",async (req,res)=>{
+
+    //   const name = req.body.name;
+    //   const mail = req.body.mail;
+    //   const tel = req.body.tel;
+
+    //   const villeDep = req.body.villeDep;
+    //   const villeArr = req.body.villeArr;
+    //   const dateDep = req.body.dateDep;
+    //   const dateArr = req.body.dateArr;
+    //   const nbPlace = req.body.nbPlace;
+    //   const price = req.body.price;
+
+      
+    //     const voyageur = new VoyageurModel({ name:name, mail:mail, tel:tel,  voyageDepart :villeDep, 
+    //      voyageArrive:villeArr, voyageDateDepart:dateDep,voyageDateArrive:dateArr,
+    //       voyagePrix:price,voyagePlaces:nbPlace});
+    //       try{
+    //         await voyage.save();
+    //       }catch(err){
+    //           console.log(err);
+    //       }//ss
+    // });
+
+
+
     app.get("/read",async (req,res)=>{
+      VoyageModel.find({},(err,result)=>{
+        if(err){
+          res.send(err);
+        }
+
+        res.send(result);
+
+
+      })
+
+    });
+
+
+    app.get("/readvoyageurs",async (req,res)=>{
       VoyageModel.find({},(err,result)=>{
         if(err){
           res.send(err);

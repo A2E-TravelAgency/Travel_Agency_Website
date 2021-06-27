@@ -25,7 +25,8 @@ const voyageSchema = new mongoose.Schema({
     voyagePlaces:{
         type : Number,
         requiered: true,
-    }
+    },
+    voyageurs:[{name: String, tel: String}]
 });
 
 const Voyages = mongoose.model("Voyages",voyageSchema)
