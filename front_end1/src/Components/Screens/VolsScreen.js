@@ -29,7 +29,7 @@ import Paper from '@material-ui/core/Paper';
 import TablePagination from '@material-ui/core/TablePagination';
 
 
-
+import {airports} from "../../data/airports.js"
 import "./style.css";
 import "./VolsScreen.css";
 import "./LoginScreen.css";
@@ -148,11 +148,12 @@ const VolsScreen = ({ history, match }) => {
     {field: 'destination', headerName: 'Destination'},
   ]
   const [inputValue1, setinputValue] = useState(null);
-  const [destination, setDestination] = useState("");
+  const [destination, setDestination] = useState(null);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
-  const [age, setAge] = React.useState('');
+  const [selectedDate, setSelectedDate] = React.useState(new Date(Date.now()));
+  const [number, setNumber] = React.useState('');
+  const [classe, setClass] = React.useState('');
   const [isActive, setActive] = useState(false);
 
   const toggleClass = () => {
@@ -236,9 +237,11 @@ const handleChangeRowsPerPage = (event) => {
   setPage(0);
 };
 
-
-  const handleChange = (event) => {
-    setAge(event.target.value);
+const handleChange = (event) => {
+  setNumber(event.target.value);
+};
+  const handleCChange = (event) => {
+    setClass(event.target.value);
   };
 
   const handleDateChange = (date) => {
@@ -248,6 +251,22 @@ const handleChangeRowsPerPage = (event) => {
   const handleInputChange = (event,value) => {
     setinputValue(value);
   };
+  const handleInputDChange = (event,value) => {
+    setDestination(value);
+  };
+
+  const formatDate=(date)=>{
+    let d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+  
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+  
+    return [year, month, day].join('-');
+  };
+
 const testHandler=(event)=>{
   const inputV= inputValue1.IATA ;
   console.log(inputV);
@@ -255,41 +274,70 @@ const testHandler=(event)=>{
   console.log(inputV);
   console.log(inputV);
 }
+
   const flightsHandler = async (e) => {
     e.preventDefault();
 
-    //const inputV= inputValue1.IATA ;
-    const config = {
-      header: {
-        "Content-Type": "application/json",
-      },
-    };
+    const inputV= inputValue1.IATA ;
+    const dest = destination.IATA;
+    const dates = formatDate(selectedDate);
+    const classes = classe;
+    const nbr = number;
 
+     const config = {
+       header: {
+         "Content-Type": "application/json",
+       },
+     };
 
-    try {
-      const { data } = await axios.post(
-        "/travel/flights",
+     const desti= destination.country ;
+     try {
+      const { datafl } = axios.post(
+        "/travel/flightsData",
         {
-          "inputValue1" :"RAK",
+
+          desti,
+          dates,
+
         },
         config
-      ).then(res => {
-        // fetch success
-        const allTickets = res.data;
-        setDataf(allTickets);
-       
-        console.log(res.data);
-     });
-      history.push("/");
-      
-      console.log(data);
-      console.log(data);
-      console.log(data.data);
+      );
+
     } catch (error) {
       setTimeout(() => {
-        setError("");
+   
       }, 5000);
     }
+     try {
+       const { data } = await axios.post(
+         "/travel/flights",
+         {
+           inputV,
+           dest,
+           dates,
+           nbr,
+           classes,
+         },
+         config
+       ).then(res => {
+         // fetch success
+         const allTickets = res.data;
+         setDataf(allTickets);
+       
+         console.log(res.data);
+      });
+       history.push("/");
+      
+       console.log(data);
+       console.log(data);
+       console.log(data.data);
+     } catch (error) {
+       setTimeout(() => {
+         setError("");
+       }, 5000);
+     }
+
+     
     /*try{const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -310,7 +358,7 @@ const testHandler=(event)=>{
   };
 
     
-  const airports = [{"name": "Goroka ","name": "Goroka ", "city": "Goroka", "country": "Papua New Guinea", "IATA": "GKA", "ICAO": "AYGA", "lat": "-6.081689834590001", "lon": "145.391998291", "timezone": "10", "id" : 1}, {"name": "Madang ", "city": "Madang", "country": "Papua New Guinea", "IATA": "MAG", "ICAO": "AYMD", "lat": "-5.20707988739", "lon": "145.789001465", "timezone": "10", "id" : 2}];
+  // const airports = [{"name": "Goroka ","name": "Goroka ", "city": "Goroka", "country": "Papua New Guinea", "IATA": "GKA", "ICAO": "AYGA", "lat": "-6.081689834590001", "lon": "145.391998291", "timezone": "10", "id" : 1}, {"name": "Madang ", "city": "Madang", "country": "Papua New Guinea", "IATA": "MAG", "ICAO": "AYMD", "lat": "-5.20707988739", "lon": "145.789001465", "timezone": "10", "id" : 2}];
   /*const search = document.getElementById('search');
   const matchList = document.getElementById('match-list');
 
@@ -343,11 +391,12 @@ const testHandler=(event)=>{
     };
     search.addEventListener('input', () => searchAirports(search.value));
 */
-
 const classes =useStyles();
 const filterOptions = createFilterOptions({
+  limit: 500,
   stringify: ({ country, city, name, IATA }) => `${country} ${city} ${name} ${IATA}`
 });
+
   return (
 
 
@@ -377,7 +426,6 @@ const filterOptions = createFilterOptions({
     <Autocomplete
       id="combo-box-demo"
       options={airports}
-      //inputValue={inputValue1}
       value={inputValue1}
       onChange={handleInputChange}
       //inputValue={inputValue1}
@@ -385,7 +433,11 @@ const filterOptions = createFilterOptions({
      // onChange={(event, value) => console.log(value)}
       //onChange={(event, newValue) => setinputValue(newValue)}
       filterOptions={filterOptions}  
-      getOptionLabel={( airports ) => airports.IATA}
+      getOptionLabel={({IATA, country, city }) => {
+        // this is how our option will be displayed when selected
+        // remove the `id` here
+        return `${IATA} - ${country} - ${city}`;
+      }}
       getOptionSelected={(option, value) => option.value === value.value}
       //getOptionLabel={({ IATA }) => { this is how our option will be displayed when selected remove the `id` here return `${IATA}`;}}
       style={{ width: (400) }}
@@ -405,12 +457,13 @@ const filterOptions = createFilterOptions({
     <Autocomplete
       id="combo-box-demo1"
       options={airports}
-      
+      value={destination}
+      onChange={handleInputDChange}
       filterOptions={filterOptions}  
-      getOptionLabel={({ country, city }) => {
+      getOptionLabel={({IATA, country, city }) => {
         // this is how our option will be displayed when selected
         // remove the `id` here
-        return `${country} ${city}`;
+        return `${IATA} - ${country} - ${city}`;
       }}
       style={{ width: (400) }}
       className={classes.tr}
@@ -430,7 +483,7 @@ const filterOptions = createFilterOptions({
       <KeyboardDatePicker
             disableToolbar
             variant="inline"
-            format="dd/MM/yyyy"
+            format="yyyy-MM-dd"
             margin="normal"
             id="date-picker-inline"
             label=" Travel departure date"
@@ -452,7 +505,7 @@ const filterOptions = createFilterOptions({
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={age}
+            value={number}
             onChange={handleChange}
             style={{ width: (248) }}
             className={classes.tr}
@@ -476,15 +529,15 @@ const filterOptions = createFilterOptions({
           <Select
             labelId="demo-simple-select-label1"
             id="demo-simple-select1"
-            value={age}
-            onChange={handleChange}
+            value={classe}
+            onChange={handleCChange}
             style={{ width: (248) }}
             className={classes.tr}
 
           >
-            <MenuItem value={1}>First Class</MenuItem>
-            <MenuItem value={2}>Business Class</MenuItem>
-            <MenuItem value={3}>Economic Class</MenuItem>
+            <MenuItem value={'F'}>First Class</MenuItem>
+            <MenuItem value={'C'}>Business Class</MenuItem>
+            <MenuItem value={'M'}>Economic Class</MenuItem>
           </Select>
         </FormControl>
       </Grid>
@@ -531,15 +584,15 @@ checked ={darkmode} />
 
             <StyledTableRow hover role="checkbox" tabIndex={-1}>
               <StyledTableCell component="th" scope="row">
-                
+                {flight.compagnie}
               </StyledTableCell>
-              <StyledTableCell align="right"></StyledTableCell>
+              <StyledTableCell align="right">{flight.plane}</StyledTableCell>
               <StyledTableCell align="right">{flight.origin}</StyledTableCell>
               <StyledTableCell align="right">{flight.destination}</StyledTableCell>
               <StyledTableCell align="right">{flight.deptime}</StyledTableCell>
               <StyledTableCell align="right">{flight.arrtime}</StyledTableCell>
-              <StyledTableCell align="right"></StyledTableCell>
-              <StyledTableCell align="right"></StyledTableCell>
+              <StyledTableCell align="right">{flight.price}</StyledTableCell>
+              <StyledTableCell align="right"><a href={flight.url} target="_blank">Redirect</a></StyledTableCell>
             </StyledTableRow>
  
         </TableBody>

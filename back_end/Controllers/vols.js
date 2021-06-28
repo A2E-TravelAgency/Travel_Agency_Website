@@ -13,12 +13,18 @@ pythonProcess.stdout.on('data',(data) =>{
     console.log(myjson.Data);
 
 });*/
+import flightData from "../Models/flightData.js"
 
 import {PythonShell} from 'python-shell';
 
 export function search(req, res, next)  {
   var mystr;
-  const {inputValue1} = req.body;
+  const inputValue1 = req.body.inputV;
+  const destination = req.body.dest;
+  const date = req.body.dates;
+  const nbr = req.body.nbr;
+  const classes = req.body.classes;
+  console.log(inputValue1+"--"+destination+"--"+date+"--"+nbr+"--"+classes);
   let options = {
   mode: 'text',
   //pythonPath: 'C:/Python39/python.exe',
@@ -26,7 +32,7 @@ export function search(req, res, next)  {
   pythonOptions: ['-u'],
   // make sure you use an absolute path for scriptPath
   scriptPath: '../back_end/Python/',
-  args:[inputValue1]
+  args:[inputValue1,destination,date,nbr,classes]
 };
 let pyshell = new PythonShell('../Python/scrapeFlights.py',options); // 1
 
@@ -61,4 +67,16 @@ let pyshell = new PythonShell('../Python/scrapeFlights.py',options); // 1
      
   }
 
+  export async function addData(req, res, next)  {
+    const username = req.body.usrname;
+    const  destination = req.body.desti;
+    const  flightdate = req.body.dates;
+    console.log(req.body)
+        try {
+                const data = await flightData.create({username, destination, flightdate});
 
+        } catch (error) {
+            res.status(500).json({success: false, error: error.message,});//500 internela server error
+        }
+    
+    }

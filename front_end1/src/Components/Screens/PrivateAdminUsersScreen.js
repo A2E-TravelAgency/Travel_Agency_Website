@@ -12,7 +12,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import {MuiPickersUtilsProvider,KeyboardTimePicker,KeyboardDatePicker,} from '@material-ui/pickers';
 
-
+import AddIcon from '@material-ui/icons/Add';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -23,7 +23,7 @@ import Paper from '@material-ui/core/Paper';
 import TablePagination from '@material-ui/core/TablePagination';
 
 
-
+import Popup from "./AddUserPopUp";
 import NavbarAdmin from "./NavbarAdmin";
 import Footer from "./Footer";
 import "./profile.css";
@@ -32,6 +32,8 @@ import "./profile.css";
 const PrivateAdminUsersScreen = ({ history, match }) => {
     const [usersdata, setUsersData] = useState(null);
     const [error2, setError2] = useState("");
+    const [success1, setSuccess1] = useState("");
+    const [openPopup, setOpenPopUp] = useState(false);
 
     const StyledTableCell = withStyles((theme) => ({
         head: {
@@ -40,7 +42,7 @@ const PrivateAdminUsersScreen = ({ history, match }) => {
           
         },
         body: {
-          fontSize: 14,
+          fontSize: 13.5,
         },
       }))(TableCell);
       
@@ -219,7 +221,33 @@ const PrivateAdminUsersScreen = ({ history, match }) => {
   
     
   
-     
+  const fetchUsers = async () => {
+
+    const config = {
+      header: {
+        "Content-Type": "application/json",
+      },
+    };
+
+
+    try {
+      const { data } = await axios.get(
+        "/private/admin/users",
+        config
+      ).then(res => {
+        // fetch success
+        const allusers = res.data;
+        setUsersData(allusers);
+
+     });
+
+    } catch (error) {
+      setTimeout(() => {
+        setError2("");
+      }, 5000);
+    }
+  
+  }; 
   useEffect(() => {
     if(!localStorage.getItem("authToken")){
       history.push("/login");
@@ -258,7 +286,34 @@ const PrivateAdminUsersScreen = ({ history, match }) => {
   
   
       
-   
+  const deleteUserHandler = async (id) => {
+
+     const config = {
+       header: {
+         "Content-Type": "application/json",
+       },
+     };
+
+     try {
+       const { data } = await axios.delete(
+         `/private/admin/users/delete/${id}`,
+ 
+         config
+       );
+
+ 
+       setSuccess1(data.data);
+       alert("User Deleted Successfully");
+       fetchUsers();
+     } catch (error) {
+       setError2(error.response.data.error);
+       setTimeout(() => {
+         setError2("");
+         alert(error2);
+       }, 5000);
+     }
+  };
+
   
   const classes =useStyles();
     return error2 ? (
@@ -300,14 +355,14 @@ const PrivateAdminUsersScreen = ({ history, match }) => {
   
           <TableBody>
   
-              <StyledTableRow hover role="checkbox" tabIndex={-1}>
+              <StyledTableRow key={user._id} hover role="checkbox" tabIndex={-1}>
 
                 <StyledTableCell  component="th" scope="row">{user._id}</StyledTableCell>
                 <StyledTableCell align="left">{user.role}</StyledTableCell>
                 <StyledTableCell align="left">{user.username}</StyledTableCell>
                 <StyledTableCell align="left">{user.email}</StyledTableCell>
                 <StyledTableCell align="left">{user.password}</StyledTableCell>
-                 <StyledTableCell align="left"><Button  style={{textTransform: 'capitalize'}} type="submit" className="form-button"/* onClick={deleteUserHandler({user._id})}*/ style={{ width: (50) , height:(30) , textTransform: 'capitalize'}}>Delete 
+                 <StyledTableCell align="left"><Button  style={{textTransform: 'capitalize'}} type="submit" className="form-button" onClick={() => deleteUserHandler(user._id)} style={{ width: (50) , height:(30) , textTransform: 'capitalize'}}>Delete 
           </Button></StyledTableCell>
                 
               </StyledTableRow>
@@ -328,15 +383,23 @@ const PrivateAdminUsersScreen = ({ history, match }) => {
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />
       </Paper>
-      <PurpleSwitch    onClick={() => {toggleClass(); setDarkmode(!darkmode);}}
-       
-  checked ={darkmode} />
+        <div style ={{paddingTop:(20),display:'flex'}}>
+          <PurpleSwitch    onClick={() => {toggleClass(); setDarkmode(!darkmode);}}
+          
+      checked ={darkmode} />
+      
+      <Button  style={{textTransform: 'capitalize', margin:'auto'}} type="submit" className="form-button" startIcon = {<AddIcon/>} onClick = {()=> setOpenPopUp(true)}>Add a new Admin
+              </Button>
+          </div>
       </div>
       </div>
       </div>
   
   </div>
   </div>
+  <Popup openPopup = {openPopup} setOpenPopUp = {setOpenPopUp}>
+
+  </Popup>
       </ThemeProvider>
   
       <Footer/> 

@@ -10,6 +10,12 @@ import PasswordResetScreen from "./Components/Screens/PasswordResetScreen.js";
 import VolsScreen from "./Components/Screens/VolsScreen.js";
 import VolsScreenUser from "./Components/Screens/VolsScreenUser.js";
 import VolsScreenAdmin from "./Components/Screens/VolsScreenAdmin.js";
+import OrganizedTripsAdminScreen from "./Components/Screens/OrganizedTripsAdminScreen.js";
+import OrganizedTripsAdminScreen2 from "./Components/Screens/OrganizedTripsAdminScreen2.js";
+import OrganizedTripsScreen from "./Components/Screens/OrganizedTripsScreen.js";
+
+
+
 
 
 
@@ -23,11 +29,15 @@ const  App =  () => {
           <PrivateRoute exact path="/admin/profile" component={PrivateAdminScreen}/>
           <PrivateRoute exact path="/admin/users" component={PrivateAdminUsersScreen}/>
           <PrivateRoute exact path="/admin/flights" component={VolsScreenAdmin}/>
+          <PrivateRoute exact path="/admin/organizedTrips" component={OrganizedTripsAdminScreen}/>
+          <PrivateRoute exact path="/admin/organizedTrips2" component={OrganizedTripsAdminScreen2}/>
           <Route exact path="/login" component={LoginScreen}/>
           <Route exact path="/register" component={RegisterScreen}/>
           <Route exact path="/forgotpassword" component={ForgotPasswordScreen}/>
           <Route exact path="/passwordreset/:resetToken" component={PasswordResetScreen}/>
           <Route exact path="/flights" component={VolsScreen}/>
+          <Route exact path="/organizedTrips" component={OrganizedTripsScreen}/>
+
         </Switch>
       </div>
     </Router>

@@ -7,6 +7,8 @@ import cors from 'cors';
 import authRoutes from "./Routes/authentification.js"
 import privateRoutes from "./Routes/private.js"
 import flightsRoutes from "./Routes/vols.js"
+import organizedTripsRoutes from "./Routes/voyages.js"
+
 
 //import volRoutes from "./Routes/vols.js"
 const app = express();
@@ -19,6 +21,8 @@ app.get("/", (req, res, next) => {
 app.use('/api/authentification' , authRoutes);
 app.use('/private' , privateRoutes);
 app.use('/travel' , flightsRoutes);
+app.use('/organizedTrips' , organizedTripsRoutes);
+
 
 
 

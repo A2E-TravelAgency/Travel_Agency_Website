@@ -135,10 +135,22 @@
 
    }
    .datatable{
+    background-color: inherit;
+     display: flex;
     overflow-x: auto;
     margin-right: auto;
     margin-left: auto;
-    margin-top: 50px;
+    /* margin-top: 50px; */
     padding: 10px;
-    margin: 20px;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    /* margin: 20px; */
+   }
+   .chart{
+     background-color: inherit;
+    width: 50%;
+    height: 50%;
+   }
+   .back{
+    background-color: rgb(24, 23, 23);
    }

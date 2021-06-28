@@ -42,7 +42,7 @@ function Navbar () {
       </li>
 
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="/organizedTrips" class="nav-link">
         <i class="fad fa-map-marked-alt" ></i>
           <span class="link-text">Organized Trips</span>
         </a>
