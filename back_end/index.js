@@ -126,16 +126,16 @@ mongoose.connect( CONNECTION_URL , { useNewUrlParser : true , useUnifiedTopology
     });
 
 
-    app.get("/readvoyageurs",async (req,res)=>{
-      VoyageModel.find({},(err,result)=>{
-        if(err){
-          res.send(err);
-        }
+    app.get("/readvoyageurs/:id",async (req,res)=>{
+      // VoyageModel.find({_id:id},(err,result)=>{
+      //   if(err){
+      //     res.send(err);
+      //   }
+      console.log(req);
+      //   res.send(result);
 
-        res.send(result);
 
-
-      })
+      // })
 
     });
 

@@ -12,7 +12,15 @@ const  App =  () => {
         })
   },[])
 
+  const showVoy=(id)=>{
+    try{
+      localStorage.setItem("idvoyage", id);
 
+    }catch(err){
+      localStorage.removeItem("idvoyage");
+    }
+   
+  }
   const addToVoyages=()=>{
     Axios.post("http://localhost:5000/insert" , {villeDep:villeDep ,
     villeArr:villeArr,dateDep:dateDep,dateArr:dateArr,nbPlace:nbPlace,
@@ -125,7 +133,7 @@ const  App =  () => {
         const event2 = new Date(val.voyageDateArrive);
         const options = {  year: 'numeric', month: 'numeric', day: 'numeric' };
 
-        return <div class="voyage" key={key}>
+        return <div onClick={()=>showVoy(val._id)} class="voyage" key={key}>
            <h3>Départ: <br></br>{val.voyageDepart}</h3>
            <h3>Arrivé:<br></br> {val.voyageArrive}</h3>
            <h3>Date de départ:<br></br> {event.toLocaleDateString(undefined, options)}</h3>

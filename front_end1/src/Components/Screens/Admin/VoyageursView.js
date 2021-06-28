@@ -10,14 +10,15 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import './App.css';
 
-const  VoyageursView =  () => {
+const  VoyageursView =  ({history}) => {
 
 
   useEffect(()=>{
-    Axios.get('http://localhost:5000/readvoyageurs' ).then((response)=>{
+    
+    Axios.get(`http://localhost:5000/readvoyageurs/${localStorage.getItem('idvoyage')}` ).then((response)=>{
         setVoyageursList(response.data);
         })
-  },[])
+  },[history])
 
   
   
@@ -30,13 +31,12 @@ const  VoyageursView =  () => {
     <div class="App" >
 
    
-     <div class="voyages">
+     <div class="voyageur">
       <h1> Liste des voyages</h1>
-      {voyageursList.map((val,key)=>{
-                  return <div class="voyage" key={key}>
+     
 
        
-       <h1>Voyageurs</h1>
+       <h1>Voyageur</h1>
  
      <TableContainer component={Paper}>
        <Table  aria-label="simple table">
@@ -46,22 +46,25 @@ const  VoyageursView =  () => {
              <TableCell align="right">Tel </TableCell>
            </TableRow>
          </TableHead>
+         {voyageursList.map((val,key)=>{
+                  return( <div class="voyage" key={key}>
          <TableBody>
            
              <TableRow >
                
                <TableCell align="right">{val.voyageurs.name}</TableCell>
-               <TableCell align="right">val.voyageurs.tel</TableCell>
+               <TableCell align="right">{val.voyageurs.tel}</TableCell>
                
              </TableRow>
            
-         </TableBody>
+         </TableBody>          </div>
+        );
+        })}
        </Table>
      </TableContainer>
    
 
 
-         </div>
 
 
 
@@ -70,7 +73,7 @@ const  VoyageursView =  () => {
 
 
         
-      })}
+      
 
 </div> 
 
