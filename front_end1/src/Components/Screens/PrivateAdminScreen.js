@@ -217,7 +217,8 @@ const PrivateScreen = ({history}) => {
         setIdData(data.data._id);
         setUsername(data.data.username);
         setEmail(data.data.email);
-      } catch (error) {
+        localStorage.setItem("username",data.data.username);
+        } catch (error) {
         localStorage.removeItem("authToken");
         localStorage.removeItem("role");
         setError2("You are not authorized please login");
@@ -229,11 +230,7 @@ const PrivateScreen = ({history}) => {
 
   }, [history]);
 
-    const logoutHandler = () => {
-      localStorage.removeItem("authToken");
-      localStorage.removeItem("role");
-      history.push("/login");
-    }
+
 
  
     const [success, setSuccess] = useState("");

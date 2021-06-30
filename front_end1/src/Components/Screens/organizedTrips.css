@@ -22,22 +22,34 @@
   
   }
   
-   button {
+   .voyagebtn {
     width: 320px;
     height: 50px;
     margin-top: 15px;
   } 
   
-   button:hover {
+  .voyagebtn:hover {
     cursor: pointer;
   }
   
   .voyages {
+    margin-top: 50px;
+    margin-bottom: 50px;
     display: flex;
     align-items: center;
     flex-direction: column;
     width: 100%;
   }
+  .voyagesB {
+    background-color: rgb(19, 19, 19);
+    padding-top: 50px;
+    padding-bottom: 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+  }
+  
   
   .voyage {
     height: auto;
@@ -50,6 +62,22 @@
   .voyage h3 {
     margin: 20px;
   }
+  .h1 {
+    margin: 30px;
+  }
+  .h1B {
+    color: grey;
+    margin: 30px;
+  }
   .voyage button {
     margin: 20px;
+  }
+  .voyage__pic {
+
+    
+    background-image: url("img/hello20.jpg");
+    background-size: cover;
+  
+    display: flex;
+
   }

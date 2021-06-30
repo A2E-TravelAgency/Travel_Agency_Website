@@ -86,8 +86,9 @@ export default function AddUserPopUp(props){
         e.preventDefault();
     
         const config = {
-          header: {
+          headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
           },
         };
     

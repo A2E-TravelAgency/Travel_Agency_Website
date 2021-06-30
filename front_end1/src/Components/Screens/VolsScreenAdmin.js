@@ -301,13 +301,14 @@ const testHandler=(event)=>{
          "Content-Type": "application/json",
        },
      };
+     const usrname = localStorage.getItem("username");
 
      const desti= destination.country ;
      try {
       const { datafl } = axios.post(
         "/travel/flightsData",
         {
-
+          usrname,
           desti,
           dates,
 
@@ -376,12 +377,16 @@ const testHandler=(event)=>{
   const [error2, setError2] = useState("");
   useEffect(() => {
   
+    if(!localStorage.getItem("authToken")){
+      history.push("/login");
+    }
     const fetchData = async () => {
       let des = [];
       let dat = [];
         const config = {
-          header: {
+          headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
           },
         };
     
@@ -641,7 +646,7 @@ checked ={darkmode} />
 
     </div>
     </div>
-    <div className="back">
+    <div  className={isActive ? 'back': "backB"}>
     <div className="datatable">
     <Paper className={classes.root}>
     <TableContainer component={Paper} className={classes.container}>

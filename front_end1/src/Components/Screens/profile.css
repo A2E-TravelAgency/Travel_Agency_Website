@@ -15,13 +15,14 @@
       align-items: center;
       background-color: #CBC3E3;
     }
-    table,td{
+    table{
       
       font-weight: bold;
       
       padding: 31.4px;
     }
     .font{
+      padding: 31.4px;
       font-size: 20px;
       color: #6649b8;
     }
@@ -29,6 +30,10 @@
       border-bottom: 2px solid #6649b8;
     }
     .tdy{
+      padding-top: 31.4px;
+      padding-bottom: 31.4px;
+      text-align: center;
+      width: 228px;
       border-left: 2px solid #6649b8;
 
     }
@@ -107,10 +112,17 @@
         .profile__form {
           width: 100%;
         }
+        td{
+          padding: 31.4px;
+        }
         .adj{
           padding-right: 3rem;
         }
         .table{
+          border-right: 0;
+          border-bottom: 2px solid #6649b8;
+        }
+        .tabled{
           border-right: 0;
           border-bottom: 2px solid #6649b8;
         }

@@ -17,6 +17,7 @@ function NavbarAdmin () {
       const logoutHandler = () => {
         localStorage.removeItem("authToken");
         localStorage.removeItem("role");
+        localStorage.removeItem("username");
 
       }   ;
   return (
@@ -48,7 +49,7 @@ function NavbarAdmin () {
       </li>
 
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="/admin/organizedTrips" class="nav-link">
         <i class="fad fa-map-marked-alt" ></i>
           <span class="link-text">Organized Trips</span>
         </a>

@@ -17,6 +17,7 @@ function NavbarUser () {
       const logoutHandler = () => {
         localStorage.removeItem("authToken");
         localStorage.removeItem("role");
+        localStorage.removeItem("username");
 
       }    ;
   return (

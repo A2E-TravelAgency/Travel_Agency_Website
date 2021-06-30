@@ -224,8 +224,9 @@ const PrivateAdminUsersScreen = ({ history, match }) => {
   const fetchUsers = async () => {
 
     const config = {
-      header: {
+      headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
       },
     };
 
@@ -255,9 +256,9 @@ const PrivateAdminUsersScreen = ({ history, match }) => {
     const fetchUsers = async () => {
 
         const config = {
-          header: {
+          headers: {
             "Content-Type": "application/json",
-          },
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,          },
         };
     
     
@@ -289,8 +290,9 @@ const PrivateAdminUsersScreen = ({ history, match }) => {
   const deleteUserHandler = async (id) => {
 
      const config = {
-       header: {
+       headers: {
          "Content-Type": "application/json",
+         Authorization: `Bearer ${localStorage.getItem("authToken")}`,
        },
      };
 

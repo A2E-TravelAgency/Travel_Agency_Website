@@ -3,10 +3,10 @@ import flightData from "../Models/flightData.js"
 
 
 export async function getPrivateData (req, res, next) {
-    console.log(req.user);
+    const users = req.user;
     res.status(200).json({
         success : true,
-        data: req.user,
+        data: users,
     });
 };
 export async function getPrivateAdminData (req, res, next) {

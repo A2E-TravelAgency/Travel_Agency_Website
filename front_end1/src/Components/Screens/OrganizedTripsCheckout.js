@@ -40,7 +40,7 @@ const  Checkout =  () => {
             }}
             />
            
-           <button onClick={()=>Buy(localStorage.getItem('idvoyage'))}  > Buy</button>
+           <button className = "voyagebtn" onClick={()=>Buy(localStorage.getItem('idvoyage'))}  > Buy</button>
 
 
          </div>

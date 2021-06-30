@@ -45,7 +45,7 @@ const  OrganizedTripsScreen =  () => {
              <h3>Prix: {val.voyagePrix} DH</h3>
              <h3>Places: {val.voyagePlaces}</h3>
              
-             <button onClick={()=>Buy(val._id)}  > Buy</button>
+             <button className = "voyagebtn" onClick={()=>Buy(val._id)}  > Buy</button>
   
   
            </div>

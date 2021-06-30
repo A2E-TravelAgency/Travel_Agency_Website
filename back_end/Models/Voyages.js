@@ -26,6 +26,9 @@ const voyageSchema = new mongoose.Schema({
         type : Number,
         requiered: true,
     },
+    image:{
+        type:String,
+    },
     voyageurs:[{name: String, tel: String}]
 });
 
