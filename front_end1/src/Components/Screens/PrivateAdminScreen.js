@@ -217,7 +217,6 @@ const PrivateScreen = ({history}) => {
         setIdData(data.data._id);
         setUsername(data.data.username);
         setEmail(data.data.email);
-        localStorage.setItem("username",data.data.username);
         } catch (error) {
         localStorage.removeItem("authToken");
         localStorage.removeItem("role");

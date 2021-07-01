@@ -42,6 +42,8 @@ const LoginScreen = ({ history }) => {
 
      localStorage.setItem("authToken", data.token);
      localStorage.setItem("role", data.role);
+     localStorage.setItem("id", data.id);
+     localStorage.setItem("username", data.username);
       console.log(localStorage);
      if(localStorage.role == "user"){
       history.push("/user/profile");

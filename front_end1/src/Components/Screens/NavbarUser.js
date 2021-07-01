@@ -18,7 +18,7 @@ function NavbarUser () {
         localStorage.removeItem("authToken");
         localStorage.removeItem("role");
         localStorage.removeItem("username");
-
+        localStorage.removeItem("id");
       }    ;
   return (
     <ThemeProvider theme={theme}>

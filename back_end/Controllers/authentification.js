@@ -122,7 +122,9 @@ export async function resetpassword(req, res, next)  {
 const  sendToken = (user, statusCode, res)=>{
     const token = user.getSignedToken();
     const role = user.role;
-    res.status(statusCode).json({ success: true, token, role });
+    const username = user.username;
+    const id = user._id;
+    res.status(statusCode).json({ success: true, token, role, id, username });
 };
 /*exports.login = (req, res, next) => {
     res.send("Login Route");

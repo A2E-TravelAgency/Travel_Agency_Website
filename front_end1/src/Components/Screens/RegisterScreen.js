@@ -48,7 +48,9 @@ const RegisterScreen = ({ history }) => {
       );
 
       localStorage.setItem("authToken", data.token);
-
+      localStorage.setItem("role", data.role);
+      localStorage.setItem("id", data.id);
+      localStorage.setItem("username", data.username);
       history.push("/user/profile");
     } catch (error) {
       setError(error.response.data.error);
