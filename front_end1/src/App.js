@@ -13,6 +13,7 @@ import VolsScreenAdmin from "./Components/Screens/VolsScreenAdmin.js";
 import OrganizedTripsAdminScreen from "./Components/Screens/OrganizedTripsAdminScreen.js";
 import OrganizedTripsAdminScreen2 from "./Components/Screens/OrganizedTripsAdminScreen2.js";
 import OrganizedTripsScreen from "./Components/Screens/OrganizedTripsScreen.js";
+import ChatScreen from "./Components/Screens/ChatScreen.js";
 
 
 
@@ -37,6 +38,7 @@ const  App =  () => {
           <Route exact path="/passwordreset/:resetToken" component={PasswordResetScreen}/>
           <Route exact path="/flights" component={VolsScreen}/>
           <Route exact path="/organizedTrips" component={OrganizedTripsScreen}/>
+          <Route exact path="/chat" component={ChatScreen}/>
 
         </Switch>
       </div>

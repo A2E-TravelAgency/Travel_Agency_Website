@@ -8,6 +8,8 @@ import authRoutes from "./Routes/authentification.js"
 import privateRoutes from "./Routes/private.js"
 import flightsRoutes from "./Routes/vols.js"
 import organizedTripsRoutes from "./Routes/voyages.js"
+import ChatRoutes from "./Routes/Conversation.js"
+import MessageRoutes from "./Routes/Message.js"
 
 
 //import volRoutes from "./Routes/vols.js"
@@ -22,6 +24,8 @@ app.use('/api/authentification' , authRoutes);
 app.use('/private' , privateRoutes);
 app.use('/travel' , flightsRoutes);
 app.use('/organizedTrips' , organizedTripsRoutes);
+app.use('/chat' , ChatRoutes);
+app.use('/messages' , MessageRoutes);
 
 
 

@@ -56,7 +56,7 @@ function NavbarUser () {
       </li>
 
       <li class="nav-item">
-        <a href="/user/chat" class="nav-link">
+        <a href="/chat" class="nav-link">
         <i class="fad fa-comments-alt"></i>
           <span class="link-text">Chat</span>
         </a>
