@@ -6,7 +6,7 @@ import {io} from "socket.io-client";
 import ChatMessage from "./ChatMessage.js";
 import{useState, useEffect, useRef} from 'react';
 import axios from "axios";
-import NavbarUser from "./NavbarUser";
+import NavbarAdmin from "./NavbarAdmin";
 import Footer from "./Footer";
 
 
@@ -146,7 +146,7 @@ export default function ChatScreen () {
 
 return(
     <div>
-    <NavbarUser/> 
+    <NavbarAdmin/> 
       <main>
         <div className="chat">
         <div className="chatMenu">

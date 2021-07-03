@@ -46,7 +46,10 @@ return(
     <div>
         <div  onClick={handleNewConv} className="conversation">
             <span className="conversationName">
-                {users.username}
+                {users.username}<br/>
+                <small className="conversationName">
+                    {users.role}
+                </small>
             </span>
         </div>  
     </div>

@@ -169,7 +169,7 @@ main {
     width: 100vw;
     height: 5rem;
     position: fixed;
-    z-index: 100;
+    z-index: 10000;
   }
 
   .logo {
@@ -197,7 +197,7 @@ main {
     width: 5rem;
     height: 100vh;
     position: fixed;
-    z-index: 100;
+    z-index: 10000;
   }
 
   .navbar:hover {

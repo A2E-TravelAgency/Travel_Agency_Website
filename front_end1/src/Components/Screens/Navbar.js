@@ -21,7 +21,7 @@ function Navbar () {
   <nav class="navbar">
     <ul class="navbar-nav">
       <li class="logo">
-        <a href="#" class="nav-link">
+        <a href="/" class="nav-link">
           <span class="link-text logo-text">Nomadic</span>
           <i class="fad fa-compass"></i>
         </a>

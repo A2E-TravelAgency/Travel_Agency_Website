@@ -28,7 +28,7 @@ function NavbarUser () {
   <nav class="navbar">
     <ul class="navbar-nav">
       <li class="logo">
-        <a href="#" class="nav-link">
+        <a href="/user" class="nav-link">
           <span class="link-text logo-text">Nomadic</span>
           <i class="fad fa-compass"></i>
         </a>
@@ -56,7 +56,7 @@ function NavbarUser () {
       </li>
 
       <li class="nav-item">
-        <a href="/chat" class="nav-link">
+        <a href="/user/chat" class="nav-link">
         <i class="fad fa-comments-alt"></i>
           <span class="link-text">Chat</span>
         </a>

@@ -23,7 +23,10 @@ return(
     <div>
         <div className="conversation">
             <span className="conversationName">
-             {user.username}
+             {user.username}<br/>
+                <small className="conversationName">
+                    {user.role}
+                </small>
             </span>
         </div>  
     </div>

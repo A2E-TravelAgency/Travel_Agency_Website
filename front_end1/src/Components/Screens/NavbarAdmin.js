@@ -29,7 +29,7 @@ function NavbarAdmin () {
   <nav class="navbar">
     <ul class="navbar-nav">
       <li class="logo">
-        <a href="#" class="nav-link">
+        <a href="/admin" class="nav-link">
           <span class="link-text logo-text">Nomadic</span>
           <i class="fad fa-compass"></i>
         </a>
@@ -57,7 +57,7 @@ function NavbarAdmin () {
       </li>
 
       <li class="nav-item">
-        <a href="/chat" class="nav-link">
+        <a href="/admin/chat" class="nav-link">
         <i class="fad fa-comments-alt"></i>
           <span class="link-text">Chat</span>
         </a>
