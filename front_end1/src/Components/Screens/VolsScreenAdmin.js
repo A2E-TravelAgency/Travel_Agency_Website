@@ -390,7 +390,8 @@ const testHandler=(event)=>{
           },
         };
     
-    
+        const options = {  year: 'numeric', month: 'numeric', day: 'numeric' };
+
         try {
           const { data } = await axios.get(
             "/private/admin/flightdata",
@@ -399,15 +400,18 @@ const testHandler=(event)=>{
             // fetch success
             for (const dataObj of res.data.data){
                 des.push(dataObj.destination)
-                dat.push(dataObj.flightdate)
+                const event = new Date(dataObj.flightdate);
+                dat.push(event.toLocaleDateString(undefined, options))
 
             }
+            
+   
             setChartData({
               labels: dat,
               datasets: [{
                   label: 'clients/dates',
                   lineTension: 0.1,
-                  data: [12, 19, 3, 5, 2, 3],
+                  data: [12, 19, 3, 5, 2, 3, 5, 10, 6],
                   fill:true,
                   backgroundColor: 
                       'rgba(255, 159, 64, 0.2)'
@@ -421,7 +425,7 @@ const testHandler=(event)=>{
             datasets: [{
                 label: 'clients/countries',
                 lineTension: 0.1,
-                data: [2, 9, 3, 5, 12, 30],
+                data: [2, 9, 3, 5, 12, 30, 10, 2,5],
                 fill:true,
                 backgroundColor:  'rgba(102, 73, 184, 0.2)',
                 borderColor: ['#6649b8'],
@@ -700,6 +704,7 @@ checked ={darkmode} />
       />
     </Paper>
     </div>
+    <div className={isActive ? 'back': "backB"}>
     <div className="datatable">
     <Paper className={classes.root}>
     <TableContainer component={Paper} className={classes.container}>
@@ -714,7 +719,8 @@ checked ={darkmode} />
         </TableHead>
     {flightdata &&
           flightdata.data.slice(page1 * rowsPerPage1, page1 * rowsPerPage1 + rowsPerPage1).map((flight, index) => {
-
+            const event = new Date(flight.flightdate);
+            const options = {  year: 'numeric', month: 'numeric', day: 'numeric' };
             return (
 
         <TableBody>
@@ -724,7 +730,7 @@ checked ={darkmode} />
                 {flight.username}
               </StyledTableCell>
               <StyledTableCell align="right">{flight.destination}</StyledTableCell>
-              <StyledTableCell align="right">{flight.flightdate}</StyledTableCell>
+              <StyledTableCell align="right">{event.toLocaleDateString(undefined, options)}</StyledTableCell>
               <StyledTableCell align="right">{flight.actiondate}</StyledTableCell>
 
             </StyledTableRow>
@@ -745,6 +751,7 @@ checked ={darkmode} />
         onChangeRowsPerPage={handleChangeRowsPerPage1}
       />
     </Paper>
+    </div>
     </div>
     <div className="datatable" >
     <div className="chart" >

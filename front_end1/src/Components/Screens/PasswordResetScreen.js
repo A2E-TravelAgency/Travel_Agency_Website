@@ -53,7 +53,7 @@ const PasswordResetScreen = ({ history, match }) => {
         <main>
         <div className="login-screen">
         <div className="login-screen__pic">
-        <div className="forgotpass-wrap">
+        <div className="forgotpasss-wrap">
           <form
             onSubmit={resetPasswordHandler}
             className="login-screen__form"

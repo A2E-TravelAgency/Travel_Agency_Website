@@ -10,7 +10,7 @@ import {MuiPickersUtilsProvider,KeyboardTimePicker,KeyboardDatePicker,} from '@m
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 
-import Navbar from "./Navbar";
+import NavbarUser from "./NavbarUser";
 import Footer from "./Footer";
 
 import './organizedTrips.css';
@@ -132,7 +132,7 @@ const useStyles = makeStyles({
   },
 });
 
-const  OrganizedTripsScreen =  ({history}) => {
+const  OrganizedTripsUserScreen =  ({history}) => {
 
   const Load =  () => {
     Axios.get('http://localhost:5000/organizedTrips/read' ).then((response)=>{
@@ -295,7 +295,7 @@ const  OrganizedTripsScreen =  ({history}) => {
 
   return (
     <div>
-      <Navbar/> 
+      <NavbarUser/> 
       <main>
       <ThemeProvider theme={darkmode ? darktheme : lighttheme}>
 
@@ -360,7 +360,7 @@ const  OrganizedTripsScreen =  ({history}) => {
 );
 }
 
-export default OrganizedTripsScreen;
+export default OrganizedTripsUserScreen;
 
 
 

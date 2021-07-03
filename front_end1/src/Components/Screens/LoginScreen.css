@@ -30,7 +30,7 @@
   }
   .wrap{
     width: 300px;
-    height: 360px;
+    height: 400px;
     padding: 1.5rem;
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
     background: transparent;
@@ -45,7 +45,6 @@
   }
   .register-wrap{
     width: 300px;
-    height: 450px;
     padding: 1.5rem;
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
     background: transparent;
@@ -58,7 +57,7 @@
     
     
   }
-  .forgotpass-wrap{
+  .forgotpasss-wrap{
     width: 300px;
     height: 290px;
     padding: 1.5rem;
@@ -90,7 +89,7 @@
   }
   
   .login-screen__forgotpassword {
-    font-size: 0.7rem;
+    font-size: 15px;
     text-align: right;
     display: block;
     margin: 0.6rem 0;
@@ -100,15 +99,21 @@
 
   }
   .texte {
-    font-size: 0.7rem;
+    font-size: 15px;
     font-family: Raleway;
-    color: #6649b8;
+    color: rgb(10, 10, 10);
   }
-  .login-screen__subtext {
-    font-size: 0.7rem;
+  .login-screen__subtext1 {
+    font-size: 15px;
     font-family: Raleway;
     margin: 0.5rem 0;
     color: rgb(10, 10, 10);
+  }
+  .login-screen__subtext {
+    font-size: 15px;
+    font-family: Raleway;
+    margin: 0.5rem 0;
+    color: white;
   }
  .form-group input{
     background: 0;

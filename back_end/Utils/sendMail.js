@@ -43,12 +43,12 @@ export async function sendEmail (to, url, txt) {
         subject: "Reset Password",
         html: `
         <div style="max-width: 700px; margin:auto; border: 10px solid #ddd; padding: 50px 20px; font-size: 110%;">
-        <h2 style="text-align: center; text-transform: uppercase;color: teal;">A2E Travel Agency</h2>
+        <h2 style="text-align: center; text-transform: uppercase;color: teal;">Nomadic Travel Agency</h2>
         <p>Hello! Forgot your password?
             Just click the button below to reset your password.
         </p>
         
-        <a href=${url} style="background: black; text-decoration: none; color: white; padding: 10px 20px; margin: 10px 0; display: inline-block;">${txt}</a>
+        <a href=${url} style="background: #6649b8; text-decoration: none; color: white; padding: 10px 20px; margin: 10px 0; display: inline-block;">${txt}</a>
     
         <p>If the button doesn't work for any reason, you can also click on the link below:</p>
     

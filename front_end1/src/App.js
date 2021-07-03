@@ -13,6 +13,7 @@ import VolsScreenAdmin from "./Components/Screens/VolsScreenAdmin.js";
 import OrganizedTripsAdminScreen from "./Components/Screens/OrganizedTripsAdminScreen.js";
 import OrganizedTripsAdminScreen2 from "./Components/Screens/OrganizedTripsAdminScreen2.js";
 import OrganizedTripsScreen from "./Components/Screens/OrganizedTripsScreen.js";
+import OrganizedTripsUserScreen from "./Components/Screens/OrganizedTripsUserScreen.js";
 import ChatScreen from "./Components/Screens/ChatScreen.js";
 import ChatAdminScreen from "./Components/Screens/ChatAdminScreen.js";
 import HomePageScreen from "./Components/Screens/HomepageScreen.js";
@@ -32,6 +33,7 @@ const  App =  () => {
           <PrivateRoute exact path="/user/profile" component={PrivateScreen}/>
           <PrivateRoute exact path="/user/flights" component={VolsScreenUser}/>
           <PrivateRoute exact path="/user/chat" component={ChatScreen}/>
+          <PrivateRoute exact path="/user/organizedTrips" component={OrganizedTripsUserScreen}/>
           <PrivateRoute exact path="/admin" component={HomePageAdminScreen}/>
           <PrivateRoute exact path="/admin/profile" component={PrivateAdminScreen}/>
           <PrivateRoute exact path="/admin/users" component={PrivateAdminUsersScreen}/>

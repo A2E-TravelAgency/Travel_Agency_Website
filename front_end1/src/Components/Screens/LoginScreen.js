@@ -69,7 +69,7 @@ const LoginScreen = ({ history }) => {
         <div className="wrap">
           <form onSubmit={loginHandler} className="login-screen__form">
             <h3 className="login-screen__title">LOGIN</h3>
-            <h6 className="texte">Welcome to 2EA Travel! <br/>Please type your email and password to sign in to your account</h6>
+            <h6 className="texte">Welcome to Nomadic Travel! <br/>Please type your email and password to sign in to your account</h6>
 
             {error && <span className="error-message">{error}</span>}
             <div className="form-group">

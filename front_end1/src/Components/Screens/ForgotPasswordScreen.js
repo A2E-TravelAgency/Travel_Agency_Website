@@ -41,7 +41,7 @@ const ForgotPasswordScreen = () => {
       <main>
         <div className="login-screen">
         <div className="login-screen__pic">
-        <div className="forgotpass-wrap">
+        <div className="forgotpasss-wrap">
           <form
             onSubmit={forgotPasswordHandler}
             className="login-screen__form"
@@ -52,7 +52,7 @@ const ForgotPasswordScreen = () => {
             {error && <span className="error-message">{error}</span>}
             {success && <span className="success-message">{success}</span>}
             <div className="form-group">
-              <p className="login-screen__subtext">
+              <p className="login-screen__subtext1">
                 Please enter the email address you register your account with. We
                 will send you reset password confirmation to this email
               </p>
