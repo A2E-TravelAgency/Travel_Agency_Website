@@ -16,7 +16,7 @@ router.route("/user/changecred").put(protect,changeEmailUsername);
 
 router.route("/admin/changecred").put(protectAdmin,changeEmailUsername);
 
-router.route("/admin/users").get(protectAdmin,getUsers);
+router.route("/admin/users").get(getUsers);
 
 router.route("/admin/flightdata").get(protectAdmin,getFlightData);
 
