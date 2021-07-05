@@ -1,6 +1,8 @@
 import express from 'express';
+import bodyParser from 'body-parser';
 //import { getHotels , createHotel , getHotel  } from '../Controllers/hotels.js';
 import { getHotels , createHotel , getHotel  }  from '../Controllers/hotels.js';
+
 
 const router = express.Router();
 

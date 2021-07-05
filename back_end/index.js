@@ -1,6 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import bodyParser from 'body-parser';
+//import bodyParser from 'body-parser';
 import cors from 'cors';
 import hotelRoutes from './Routes/hotels.js';
 import cityRoutes from './Routes/city.js';
@@ -14,7 +14,7 @@ const app = express();
 
 
 app.use(express.json({limit : "30mb" , extended : true}));
-app.use(express.urlencoded({limit : "30mb" , extended : false}));
+app.use(express.urlencoded({limit : "30mb" , extended : true}));
 app.use(cors());    
 app.use('/hotels' , hotelRoutes);
 app.use('/city' , cityRoutes);

@@ -7,52 +7,76 @@ import axios from 'axios';
 
 const router = express.Router();
 
-export const getHotel = async (req , res ,  id , dated  , cham , per) => {
+export const getHotel = async (req , res ,  id , dated  , cham , per ) => {
 
-    
 
-    const options = {
-        "method": "GET",
-        "hostname": "travel-advisor.p.rapidapi.com",  //60763
-        "port": null,
-        "path": "/hotels/get-details?location_id="+id+"&checkin="+dated+"&adults="+per+"&nights="+cham+"",
-        "headers": {
-            "x-rapidapi-key": "6e5bedd8cdmsh9a8621b6bf20f52p1cf4a4jsn2304b68f822f",
-            "x-rapidapi-host": "travel-advisor.p.rapidapi.com",
-            "useQueryString": true
+
+    var options = {
+        method: 'GET',
+        url: 'https://travel-advisor.p.rapidapi.com/hotels/get-details',
+        params: {
+          location_id: id,
+          checkin: dated,
+          adults: per,
+          nights: cham
+        },
+        headers: {
+          'x-rapidapi-key': '512e81dfc6mshba53a137a3da1f7p16781cjsnc11a1b76dbb3',
+          'x-rapidapi-host': 'travel-advisor.p.rapidapi.com'
         }
-    };
-    
-     req = http.request(options, function (res) {
-        const chunks = [];
-    
-        res.on("data", function (chunk) {
-            chunks.push(chunk);
-        });
-    
-        res.on("end", function () {
-            const body = Buffer.concat(chunks);
-            const obj = JSON.parse(body);
-            
-                console.log(obj.data[0].name);
-                console.log(obj.data[0].location_string);
-                console.log(obj.data[0].ranking);
-                console.log(obj.data[0].price);
-                console.log(obj.data[0].hotel_class);
-                console.log(obj.data[0].description);
+      };
+      const result = await axios.request(options);
+    //const result = await axios.request(options);
 
-               
+    //for ( var i = 0 ; i < 10 ; i++){
 
-           
-            
-        });
-    });
+        //var myJSON = JSON.stringify(result.data.data);
+ //await result.data[0];
+   //console.log(myJSON); 
+     
+        
+        // await result.data.data[i];
+        
+        
+        //const tab =[];
+       // tab.push(arr);
+       //console.log(result.data.data[i].name);
+        //const hotels  = result.data.data;
+        
+     // }
+    //  res.end();
     
-    req.end();
-   res.send('success');
+     try {
+
+        
+        //for ( var i = 0 ; i < 10 ; i++){
+
+            //var myJSON = JSON.stringify(result.data.data[i]);
+     //await result.data[0];
+       //console.log(myJSON); 
+        // res.write(myJSON);
+            
+            // await result.data.data[i];
+            res.send(result.data.data);
+            
+            //const tab =[];
+           // tab.push(arr);
+           //console.log(result.data.data[i].name);
+            //const hotels  = result.data.data;
+            
+          }
+         // res.end();
+         catch (error) {
+          console.log(error);
+      }
+    } 
+    
+
+       
+    
+   
    
     
-}
 
 export const getHotels = async (req , res ) => {
 
@@ -67,20 +91,25 @@ export const getHotels = async (req , res ) => {
 
 export const createHotel = async (req , res ) => {
 
-        const hotel = req.body;
+        const hotel = await req.body;
         const newHotel = new hotelModel(hotel);
-        //const des = newHotel.destination;
-        const des = "paris";
-        console.log("des is"+des);
+        
+        //const des = "boston";
+         //const hotelbody = JSON.stringify(hotel);
+        
         const dated = newHotel.date_debut;
-        //const datef = newHotel.date_fin;
+        const des = newHotel.ville;
         const cham = newHotel.chambres;
         const per = newHotel.personnes;
-        
+        console.log(" des "+newHotel.ville);
+        console.log("cham is "+cham);
+        console.log("dated is "+dated);
+        console.log("hotel "+newHotel);
+        console.log("personne is "+per);
     try {
        // await newHotel.save();
        const id =  await getCityy( req , res , des );
-       console.log(id);
+       console.log("id is "+id);
        
         //const id = res.id;
       //const id = res.locals.id;

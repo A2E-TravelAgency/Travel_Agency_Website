@@ -2,9 +2,8 @@ import mongoose from 'mongoose';
 
 const hotelSchema = mongoose.Schema(
     {
-        destination : String ,
+        ville : String ,
         date_debut : Date,
-        date_fin : Date , 
         chambres : Number ,
         personnes : Number ,
 

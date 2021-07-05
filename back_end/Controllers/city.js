@@ -22,7 +22,7 @@ export const getCity = async (req , res   ) => {
         "port": null,
         "path": "/locations/search?query=chicago",
         "headers": {
-            "x-rapidapi-key": "6e5bedd8cdmsh9a8621b6bf20f52p1cf4a4jsn2304b68f822f",
+            "x-rapidapi-key": "512e81dfc6mshba53a137a3da1f7p16781cjsnc11a1b76dbb3",
             "x-rapidapi-host": "travel-advisor.p.rapidapi.com",
             "useQueryString": true
         }
@@ -68,7 +68,7 @@ export const  getCityy = async (req , res , des  ) => {
         url: 'https://travel-advisor.p.rapidapi.com/locations/search',
         params: {query: des},
         headers: {
-          'x-rapidapi-key': '6e5bedd8cdmsh9a8621b6bf20f52p1cf4a4jsn2304b68f822f',
+          'x-rapidapi-key': '512e81dfc6mshba53a137a3da1f7p16781cjsnc11a1b76dbb3',
           'x-rapidapi-host': 'travel-advisor.p.rapidapi.com'
         }
       };
