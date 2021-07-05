@@ -1,4 +1,5 @@
-export default (hotels = [] , action  ) => {
+
+export default (hotels = [ [{ name : 'name' , category : {key : 'key' } } ] ] , action  ) => {
 
     switch (action.type) {
         case 'FETCH_ALL':
@@ -6,7 +7,7 @@ export default (hotels = [] , action  ) => {
             break;
 
         case 'CREATE':
-                return hotels;
+                return [... hotels , action.payload ];
              break;
     
         default:

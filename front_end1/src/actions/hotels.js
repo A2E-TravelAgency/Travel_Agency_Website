@@ -13,4 +13,19 @@ export const getHotels = () => async (dispatch) => {
 
      }
 
+
+
+export const createHotel = (hotel) => async (dispatch) => {
+
+        try {
+            const { data } = await api.createHotel(hotel);
+    
+            dispatch({ type : 'CREATE' , payload: data }) ;
+        } catch (error) {
+            
+            console.log(error);
+        }
+    
+         }
+
     
