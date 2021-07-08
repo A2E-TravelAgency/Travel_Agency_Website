@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 dotenv.config({ path:'./config.env' });
 import express from 'express';
 import mongoose from 'mongoose';
-import bodyParser from 'body-parser';
+//import bodyParser from 'body-parser';
 import cors from 'cors';
 import authRoutes from "./Routes/authentification.js"
 import privateRoutes from "./Routes/private.js"
@@ -10,6 +10,10 @@ import flightsRoutes from "./Routes/vols.js"
 import organizedTripsRoutes from "./Routes/voyages.js"
 import ChatRoutes from "./Routes/Conversation.js"
 import MessageRoutes from "./Routes/Message.js"
+import hotelRoutes from './Routes/hotels.js';
+import cityRoutes from './Routes/city.js';
+
+
 
 
 //import volRoutes from "./Routes/vols.js"
@@ -33,6 +37,16 @@ app.use('/messages' , MessageRoutes);
 //express.json({limit : "30mb" , extended : true});
 //express.urlencoded({limit : "30mb" , extended : false});
 //app.use(cors());
+app.use(express.json({limit : "30mb" , extended : true}));
+app.use(express.urlencoded({limit : "30mb" , extended : true}));
+app.use(cors());    
+app.use('/hotels' , hotelRoutes);
+app.use('/city' , cityRoutes);
+// app.get
+// app.get
+//express.json({limit : "30mb" , extended : true});
+//express.urlencoded({limit : "30mb" , extended : false});
+
 
 const  CONNECTION_URL = "mongodb+srv://admin:2021@cluster0.fwzji.mongodb.net/Travel_Agency?retryWrites=true&w=majority";
 
@@ -43,3 +57,6 @@ mongoose.connect( CONNECTION_URL , { useNewUrlParser : true , useUnifiedTopology
     .catch( (error) => console.log(error.message ));
 
     mongoose.set('useFindAndModify' , false);
+
+
+    // api :  sandb_otLymM7a9SRARVkd81MKtlaQPSSkPJtsWSBq90qN

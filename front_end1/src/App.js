@@ -19,11 +19,28 @@ import ChatAdminScreen from "./Components/Screens/ChatAdminScreen.js";
 import HomePageScreen from "./Components/Screens/HomepageScreen.js";
 import HomePageAdminScreen from "./Components/Screens/HomepageAdminScreen.js";
 import HomePageUserScreen from "./Components/Screens/HomepageUserScreen.js";
+import React , {useEffect } from 'react';
+import { Container , /*Grid,*/ Typography } from '@material-ui/core';
+import { useDispatch} from 'react-redux';
+import { getHotels } from './actions/hotels';
+import Form from './Components/Form/Form.js';
+import Hotels from './Components/Hotels/Hotels.js';
+import SingleHotel from './Components/SingleHotel/SingleHotel.js';
+import Hotel from './Components/Hotel/Hotel.js';
+
 
 
 
 
 const  App =  () => {
+  const dispatch = useDispatch();
+
+  useEffect( ()=> {
+    dispatch(getHotels());
+  } , [dispatch]);
+
+  
+   
   return (
     <Router>
       <div className="app" >
@@ -47,10 +64,16 @@ const  App =  () => {
           <Route exact path="/passwordreset/:resetToken" component={PasswordResetScreen}/>
           <Route exact path="/flights" component={VolsScreen}/>
           <Route exact path="/organizedTrips" component={OrganizedTripsScreen}/>
-          
+          < Route  exact path='/Form' component={Form}  />
+          < Route  exact path='/Hotels' component={Hotels}  />
+          < Route  exact path='/SingleHotel' component={SingleHotel}  />
 
         </Switch>
       </div>
+
+      
+    
+    
     </Router>
   );
 }
