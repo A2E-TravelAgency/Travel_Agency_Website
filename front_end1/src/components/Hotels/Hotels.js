@@ -15,13 +15,14 @@ const  Hotels =  () => {
   console.log(hotels);
   //console.log(hotels);
   
+  
   return (
 
 
     
        ( !hotels[hotels.length - 1].length ? <CircularProgress / > : (
 
-           <Grid className={classes.container} container alignItems="stretch" spacing={3}>
+           <Grid className={classes.container} container alignItems="stretch" spacing={3} >
               {hotels[hotels.length - 1].map((hotel) => (
                   <Grid key={hotel.name} item xs={12} sm={6} lg={6}  >
                       <Hotel hotels={hotel}/>

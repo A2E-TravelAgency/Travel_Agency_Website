@@ -23,7 +23,9 @@ const  Hotel =  (  props ) => {
 
    const styles = 
 {
-
+  root: {
+    maxWidth: 345,
+  },
 media: {
   height: 0,
   paddingTop: '40.25%', // 16:9,

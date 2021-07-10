@@ -36,7 +36,7 @@ function NavbarAdmin () {
       </li>
 
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="/admin/Form" class="nav-link">
         <i class="fad fa-hotel"></i>
           <span class="link-text">Hotels</span>
         </a>

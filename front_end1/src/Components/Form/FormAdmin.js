@@ -11,7 +11,7 @@ import {createHotel} from '../../actions/hotels';
 import {useHistory} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import Hotels from '../Hotels/Hotels';
-import Navbar from "../Screens/Navbar";
+import NavbarAdmin from "../Screens/NavbarAdmin";
 import Footer from "../Screens/Footer";
 import FormControl from '@material-ui/core/FormControl';
 
@@ -229,7 +229,7 @@ const Form = () => {
 
     return (
       <>
-        <Navbar/> 
+        <NavbarAdmin/> 
           <main>
           <ThemeProvider theme={darkmode ? darktheme : lighttheme}>
 

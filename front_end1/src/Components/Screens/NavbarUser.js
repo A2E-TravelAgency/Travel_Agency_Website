@@ -35,7 +35,7 @@ function NavbarUser () {
       </li>
 
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="/user/Form" class="nav-link">
         <i class="fad fa-hotel"></i>
           <span class="link-text">Hotels</span>
         </a>
@@ -49,7 +49,7 @@ function NavbarUser () {
       </li>
 
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="/user/organizedTrips" class="nav-link">
         <i class="fad fa-map-marked-alt" ></i>
           <span class="link-text">Organized Trips</span>
         </a>

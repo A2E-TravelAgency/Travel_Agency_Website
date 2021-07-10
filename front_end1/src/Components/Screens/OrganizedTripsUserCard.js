@@ -37,7 +37,7 @@ import {
     const Buy=(id)=>{
         try{
           localStorage.setItem("idvoyage", id);
-    
+          history.push("/OrganizedTripsCheckout")
         }catch(err){
           localStorage.removeItem("idvoyage");
         }

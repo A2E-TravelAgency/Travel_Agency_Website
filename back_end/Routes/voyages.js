@@ -175,14 +175,17 @@ console.log(id);
     // const name = req.body.name;
     // const tel = req.body.tel;
     const id =req.body.id;
-    var voyageurs= { name: req.body.name, tel: req.body.tel };
-    
+    var voyageur= { name: req.body.name, tel: req.body.tel };
         try{
-          VoyageModel.findById(id,(bought)=>{
-            bought.voyageurs.push(voyageurs);
-            bought.voyagePlaces=bought.voyagePlaces-1;
-            bought.save();
-          });
+         const VM = await VoyageModel.findOne({_id : id});
+         VM.voyageurs.push(voyageur);
+         VM.voyagePlaces = VM.voyagePlaces-1,
+         VM.save();
+          // ,(bought)=>{
+          //   bought.voyageurs.push(voyageur);
+          //   bought.voyagePlaces=bought.voyagePlaces-1;
+          //   bought.save();
+          // }
         }catch(err){
             console.log(err);
         }//ss

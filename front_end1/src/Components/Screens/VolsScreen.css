@@ -67,6 +67,15 @@
     display: flex;
 
   }
+  .hotel-screen__pic {
+
+    
+    background-image: url("img/hello98.jpg");
+    background-size: cover;
+  
+    display: flex;
+
+  }
 .form-button {
     width: 250px;
     height: 50px;
@@ -124,8 +133,24 @@
      text-align: left;
      margin-bottom: 1rem;
    }
+   .hotel-screen__title {
+    color: rgb(61, 60, 60);
+    font-family: Raleway;
+     text-align: left;
+     margin-bottom: 1rem;
+   }
    .vol-screen__quote {
     color: rgb(175, 166, 166);
+    font-family: Raleway;
+     text-align: center;
+     position: absolute;
+     top: 15%;
+     left: 52%;
+       transform: translate(-50%, -50%);
+
+   }
+   .hotel-screen__quote {
+    color: rgb(43, 43, 43);
     font-family: Raleway;
      text-align: center;
      position: absolute;
