@@ -8,7 +8,7 @@ router.route("/user").get(protect,getPrivateData);
 
 router.route("/admin").get(protectAdmin,getPrivateAdminData);
 
-router.route("user/changepassword").put(protect,changePassword);
+router.route("/user/changepassword").put(protect,changePassword);
 
 router.route("/admin/changepassword").put(protectAdmin,changePassword);
 

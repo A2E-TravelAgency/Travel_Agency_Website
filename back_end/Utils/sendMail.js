@@ -6,7 +6,7 @@ const OAUTH_PLAYGROUND ='https://developers.google.com/oauthplayground';
 
 const MAILING_SERVICE_CLIENT_ID='1072327352534-ph7om41692i4va82qt6gbkg385cpprbl.apps.googleusercontent.com';
 const MAILING_SERVICE_CLIENT_SECRET='5eBCfttgg7VLB3Liv3qXo0mE';
-const MAILING_SERVICE_REFRESH_TOKEN='1//04blybSj_5XNrCgYIARAAGAQSNwF-L9IrEmja-ycpNNjUrVmy3AiIgl5SDMY08vnqSYWlrx1t3MkwEWZW3m5np_DTGkNKHRNrjbY';
+const MAILING_SERVICE_REFRESH_TOKEN='1//04104SVe5ZORdCgYIARAAGAQSNwF-L9IrXwHvVIftZJSkL3X7igiPve_mvUvGQDreB-C8l6n1q8_xP9ewxwhh2gtSb5BuG8XABXY';
 const SENDER_EMAIL_ADDRESS ='sisomatrej@gmail.com';
 
 

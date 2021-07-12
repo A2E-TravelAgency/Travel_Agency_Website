@@ -254,7 +254,7 @@ const PrivateScreen = ({history}) => {
   
       try {
         const { data } = await axios.put(
-          `/private/auser/changepassword`,
+          `/private/user/changepassword`,
           {
             email : emaildata,
             password : values.confirmpassword,

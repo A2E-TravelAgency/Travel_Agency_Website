@@ -17,7 +17,7 @@ export async function getPrivateAdminData (req, res, next) {
     });
 };
 export async function changePassword (req, res, next) {
-    console.log(req.body.email);
+    console.log(req.body);
     const email = req.body.email;
      try {
          const user = await Utilisateur.findOne({email});
